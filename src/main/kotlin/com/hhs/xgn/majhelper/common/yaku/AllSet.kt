@@ -2,7 +2,7 @@ package com.hhs.xgn.majhelper.common.yaku
 
 import com.hhs.xgn.majhelper.common.*
 
-class AllSet : Yaku {
+object AllSet : Yaku {
     override fun getName(): String {
         return "对对和"
     }

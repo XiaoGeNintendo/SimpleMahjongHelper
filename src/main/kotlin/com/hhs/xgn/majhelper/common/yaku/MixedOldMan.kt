@@ -14,7 +14,7 @@ class MixedOldMan : Yaku {
     override fun check(deck: Array<Int>): Boolean {
         for (i in 0..3) {
             val gp = groupToTile[deck[i]]
-            if (gp.second != SET || toDisplayName(gp.second) !in oneNineTiles) {
+            if (gp.second != SET || toDisplayName(gp.first) !in oneNineTiles) {
                 return false
             }
         }

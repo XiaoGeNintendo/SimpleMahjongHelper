@@ -2,7 +2,7 @@ package com.hhs.xgn.majhelper.common.yaku
 
 import com.hhs.xgn.majhelper.common.*
 
-class MixedOneNine : Yaku {
+object MixedOneNine : Yaku {
     override fun getName(): String {
         return "混全带幺九"
     }
@@ -24,6 +24,6 @@ class MixedOneNine : Yaku {
                         groupToTile[deck[2]].first<Tile.East.ordinal && groupToTile[deck[3]].first<Tile.East.ordinal &&
                         deck[4]<Tile.East.ordinal) &&
                 //不能是对对和
-                true //TODO
+                !AllSet.check(deck)
     }
 }

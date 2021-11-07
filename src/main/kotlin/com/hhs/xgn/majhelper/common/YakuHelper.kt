@@ -20,8 +20,8 @@ fun initYaku() {
     yakus += OneToNine()
     yakus += ThreeRunOfSameKind()
     yakus += ThreeSetOfSameKind()
-    yakus += MixedOneNine()
-    yakus += AllSet()
+    yakus += MixedOneNine
+    yakus += AllSet
     yakus += MixedOldMan()
     yakus += SmallThreeDragon()
 }
