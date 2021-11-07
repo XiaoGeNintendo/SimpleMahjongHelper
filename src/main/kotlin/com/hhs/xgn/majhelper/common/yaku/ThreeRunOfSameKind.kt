@@ -13,7 +13,7 @@ class ThreeRunOfSameKind : Yaku {
 
     override fun check(deck: Array<Int>): Boolean {
         val arr=Array(10){0}
-        for(i in deck){
+        for(i in 0..3){
             val gp= groupToTile[deck[i]]
             if(gp.second==RUN){
                 arr[gp.first%9] = arr[gp.first%9] or (1 shl gp.first/9)

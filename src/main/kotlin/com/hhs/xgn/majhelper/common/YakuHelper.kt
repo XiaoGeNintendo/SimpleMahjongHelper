@@ -21,7 +21,9 @@ fun initYaku() {
     yakus += ThreeRunOfSameKind()
     yakus += ThreeSetOfSameKind()
     yakus += MixedOneNine()
-
+    yakus += AllSet()
+    yakus += MixedOldMan()
+    yakus += SmallThreeDragon()
 }
 
 fun getDetail(deck: Array<Int>):ArrayList<String>{

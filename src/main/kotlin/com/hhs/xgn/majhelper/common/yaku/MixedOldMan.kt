@@ -2,9 +2,9 @@ package com.hhs.xgn.majhelper.common.yaku
 
 import com.hhs.xgn.majhelper.common.*
 
-class ThreeSetOfSameKind : Yaku {
+class MixedOldMan : Yaku {
     override fun getName(): String {
-        return "三色同刻"
+        return "混老头"
     }
 
     override fun getScore(): Pair<Int, Int> {
@@ -12,14 +12,16 @@ class ThreeSetOfSameKind : Yaku {
     }
 
     override fun check(deck: Array<Int>): Boolean {
-        val arr = Array(10) { 0 }
         for (i in 0..3) {
             val gp = groupToTile[deck[i]]
-            if (gp.second == SET && gp.first < Tile.East.ordinal) {
-                arr[gp.first % 9] = arr[gp.first % 9] or (1 shl gp.first / 9)
+            if (gp.second != SET || toDisplayName(gp.second) !in oneNineTiles) {
+                return false
             }
         }
 
-        return arr.any { it == 0b111 }
+        if (toDisplayName(deck[4]) !in oneNineTiles) {
+            return false
+        }
+        return true
     }
 }
