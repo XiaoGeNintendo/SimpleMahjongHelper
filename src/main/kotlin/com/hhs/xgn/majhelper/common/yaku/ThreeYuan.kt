@@ -2,7 +2,7 @@ package com.hhs.xgn.majhelper.common.yaku
 
 import com.hhs.xgn.majhelper.common.*
 
-class ThreeYuan : Yaku {
+object ThreeYuan : Yaku {
     override fun getName(): String {
         return "三元牌"
     }

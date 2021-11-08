@@ -2,24 +2,24 @@ package com.hhs.xgn.majhelper.common.yaku
 
 import com.hhs.xgn.majhelper.common.*
 
-object MixedOldMan : Yaku {
+object GreenOldMan : Yaku {
     override fun getName(): String {
-        return "混老头"
+        return "清老头！！"
     }
 
     override fun getScore(): Pair<Int, Int> {
-        return Pair(2, 2)
+        return Pair(13,13)
     }
 
     override fun check(deck: Array<Int>): Boolean {
         for (i in 0..3) {
             val gp = groupToTile[deck[i]]
-            if (gp.second != SET || toDisplayName(gp.first) !in oneNineTiles) {
+            if (gp.second != SET || toDisplayName(gp.first) !in oneNineTiles || gp.first>=Tile.East.ordinal) {
                 return false
             }
         }
 
-        if (toDisplayName(deck[4]) !in oneNineTiles || GreenOldMan.check(deck) || FullWord.check(deck)) {
+        if (toDisplayName(deck[4]) !in oneNineTiles || deck[4]>=Tile.East.ordinal) {
             return false
         }
         return true

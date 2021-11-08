@@ -11,23 +11,31 @@ fun initYaku() {
     }
     isYakuInit = true
     yakus += DoubleSequence
-    yakus += Pinfu()
-    yakus += Riichi()
-    yakus += Tanyao()
-    yakus += RoundWind()
-    yakus += SelfWind()
-    yakus += ThreeYuan()
-    yakus += OneToNine()
-    yakus += ThreeRunOfSameKind()
-    yakus += ThreeSetOfSameKind()
+    yakus += Pinfu
+    yakus += Riichi
+    yakus += Tanyao
+    yakus += RoundWind
+    yakus += SelfWind
+    yakus += ThreeYuan
+    yakus += OneToNine
+    yakus += ThreeRunOfSameKind
+    yakus += ThreeSetOfSameKind
     yakus += MixedOneNine
     yakus += AllSet
-    yakus += MixedOldMan()
-    yakus += SmallThreeDragon()
+    yakus += MixedOldMan
+    yakus += SmallThreeDragon
     yakus += DoubleDoubleSequence
     yakus += FullOneNine
     yakus += MixedOneColor
     yakus += FullOneColor
+    yakus += FullGreen
+    yakus += FullWord
+    yakus += GreenOldMan
+    yakus += NineLight
+    yakus += SmallFourHappiness
+    yakus += BigFourHappiness
+    yakus += BigThreeDragon
+
 }
 
 fun getDetail(deck: Array<Int>):ArrayList<String>{

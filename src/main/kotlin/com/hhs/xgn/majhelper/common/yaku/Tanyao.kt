@@ -5,7 +5,7 @@ import com.hhs.xgn.majhelper.common.isRun
 import com.hhs.xgn.majhelper.common.oneNineTiles
 import com.hhs.xgn.majhelper.common.toDisplayName
 
-class Tanyao : Yaku {
+object Tanyao : Yaku {
     override fun getName(): String {
         return "断幺九"
     }

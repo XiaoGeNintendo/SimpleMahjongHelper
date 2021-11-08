@@ -4,7 +4,7 @@ import com.hhs.xgn.majhelper.common.isMyWindTile
 import com.hhs.xgn.majhelper.common.isRoundWindTile
 import com.hhs.xgn.majhelper.common.isRun
 
-class Pinfu: Yaku {
+object Pinfu: Yaku {
     override fun getName(): String {
         return "平和"
     }

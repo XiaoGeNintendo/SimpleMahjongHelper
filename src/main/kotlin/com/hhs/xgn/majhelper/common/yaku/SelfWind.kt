@@ -2,7 +2,7 @@ package com.hhs.xgn.majhelper.common.yaku
 
 import com.hhs.xgn.majhelper.common.*
 
-class SelfWind : Yaku {
+object SelfWind : Yaku {
     override fun getName(): String {
         return "自风牌"
     }

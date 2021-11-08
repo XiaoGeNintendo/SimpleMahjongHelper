@@ -2,7 +2,7 @@ package com.hhs.xgn.majhelper.common.yaku
 
 import com.hhs.xgn.majhelper.common.*
 
-class SmallThreeDragon : Yaku {
+object SmallThreeDragon : Yaku {
     override fun getName(): String {
         return "小三元"
     }
@@ -21,6 +21,6 @@ class SmallThreeDragon : Yaku {
         if(deck[4]>=Tile.White.ordinal) {
             sy[deck[4]-Tile.White.ordinal]=true
         }
-        return sy[0] && sy[1] && sy[2]
+        return sy[0] && sy[1] && sy[2] && !BigThreeDragon.check(deck)
     }
 }

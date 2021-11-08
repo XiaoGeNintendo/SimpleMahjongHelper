@@ -12,6 +12,7 @@ object FullOneColor : Yaku {
     }
 
     override fun check(deck: Array<Int>): Boolean {
+
         for (i in 1..3) {
             val gp = groupToTile[deck[i]]
             val last = groupToTile[deck[i - 1]]

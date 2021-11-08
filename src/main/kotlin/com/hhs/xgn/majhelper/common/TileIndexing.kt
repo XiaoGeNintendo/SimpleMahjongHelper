@@ -7,7 +7,7 @@ const val SET = 0
 const val RUN = 1
 val tileString = "一二三四五六七八九①②③④⑤⑥⑦⑧⑨１２３４５６７８９东南西北白发中？"
 val totalTile = tileString.length-1 //exclude '?'
-val oneNineTiles = "一九①⑨19东西南北白发中"
+val oneNineTiles = "一九①⑨１９东西南北白发中"
 
 /**
  * 0 = set

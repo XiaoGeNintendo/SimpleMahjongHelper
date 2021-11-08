@@ -1,6 +1,6 @@
 package com.hhs.xgn.majhelper.common.yaku
 
-class Riichi: Yaku {
+object Riichi: Yaku {
     override fun getName(): String {
         return "立直"
     }

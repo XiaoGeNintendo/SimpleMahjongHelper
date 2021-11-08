@@ -12,7 +12,7 @@ object MixedOneColor : Yaku {
     }
 
     override fun check(deck: Array<Int>): Boolean {
-        if(FullOneColor.check(deck)){
+        if(FullOneColor.check(deck) || FullWord.check(deck) || FullGreen.check(deck)){
             return false
         }
 

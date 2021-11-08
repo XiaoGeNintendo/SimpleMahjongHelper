@@ -2,7 +2,7 @@ package com.hhs.xgn.majhelper.common.yaku
 
 import com.hhs.xgn.majhelper.common.*
 
-class ThreeSetOfSameKind : Yaku {
+object ThreeSetOfSameKind : Yaku {
     override fun getName(): String {
         return "三色同刻"
     }
