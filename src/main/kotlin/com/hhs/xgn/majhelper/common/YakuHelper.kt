@@ -10,7 +10,7 @@ fun initYaku() {
         return
     }
     isYakuInit = true
-    yakus += DoubleSequence()
+    yakus += DoubleSequence
     yakus += Pinfu()
     yakus += Riichi()
     yakus += Tanyao()
@@ -24,6 +24,10 @@ fun initYaku() {
     yakus += AllSet
     yakus += MixedOldMan()
     yakus += SmallThreeDragon()
+    yakus += DoubleDoubleSequence
+    yakus += FullOneNine
+    yakus += MixedOneColor
+    yakus += FullOneColor
 }
 
 fun getDetail(deck: Array<Int>):ArrayList<String>{

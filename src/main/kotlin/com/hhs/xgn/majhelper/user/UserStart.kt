@@ -13,7 +13,7 @@ fun userStart(threadCount: Int) {
     initYaku()
 
     //read file
-    val reader = File("table_${roundWind}_$myWind.txt.zip").bufferedReader()
+    val reader = File("table_${roundWind}_$myWind.txt").bufferedReader()
     val str = reader.readLine()
     reader.close()
 

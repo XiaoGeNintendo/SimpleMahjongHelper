@@ -5,8 +5,8 @@ import java.util.*
 
 const val SET = 0
 const val RUN = 1
-val tileString = "一二三四五六七八九①②③④⑤⑥⑦⑧⑨123456789东南西北白发中"
-val totalTile = tileString.length
+val tileString = "一二三四五六七八九①②③④⑤⑥⑦⑧⑨１２３４５６７８９东南西北白发中？"
+val totalTile = tileString.length-1 //exclude '?'
 val oneNineTiles = "一九①⑨19东西南北白发中"
 
 /**
@@ -93,6 +93,7 @@ fun completeDeckToString(completeDeck: Array<Int>): String {
 /**
  * Expand a *deck* to a *complete deck*
  */
+@Deprecated("Too slow")
 fun expandDeck(deck: Array<Int>): Array<Int> {
     val res = Array(14) { 0 }
     val str = deckToString(deck)
@@ -122,7 +123,7 @@ fun verifyDeck(deck: Array<Int>): Boolean {
 }
 
 fun countSteps(completeDeck: Array<Int>, deck: Array<Int>): Int {
-    val arr = Array(totalTile) { 0 }
+    val arr = Array(totalTile+1) { 0 }
     for (i in completeDeck) {
         arr[i]++
     }
@@ -148,7 +149,7 @@ fun countSteps(completeDeck: Array<Int>, deck: Array<Int>): Int {
 fun suffixToCompleteDeck(suffix: String): Array<Int> {
     val nw = suffix.lowercase()
 
-    val arr = Array(14) { 0 }
+    val arr = Array(14) { totalTile }
     var cnt = 0
 
     var mode = 0

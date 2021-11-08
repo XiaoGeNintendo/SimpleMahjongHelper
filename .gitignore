@@ -1,5 +1,6 @@
 table*.txt
 .idea/
+target/
 
 # Compiled class file
 *.class
