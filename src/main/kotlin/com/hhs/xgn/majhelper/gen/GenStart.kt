@@ -1,8 +1,14 @@
 package com.hhs.xgn.majhelper.gen
 
 import com.hhs.xgn.majhelper.common.*
+import com.hhs.xgn.majhelper.user.scanner
 import java.io.PrintWriter
+import java.util.*
+import javax.swing.JFrame
+import javax.swing.JOptionPane
+import kotlin.collections.ArrayList
 import kotlin.concurrent.thread
+import kotlin.system.exitProcess
 
 //generating table
 fun genTable() {
@@ -63,8 +69,20 @@ fun genTable() {
 }
 
 fun main() {
-    roundWind = EAST
-    myWind = SOUTH
+
+    val scanner= Scanner(System.`in`)
+    try {
+        println("输入场风：东=0,西=1,南=2,北=3")
+        roundWind = scanner.nextInt()
+        println("输入自风：东=0,西=1,南=2,北=3")
+        myWind = scanner.nextInt()
+        println("开始生成，大概需要1分钟。")
+    }catch(e: Exception){
+        val jf= JFrame()
+        jf.isAlwaysOnTop=true
+        JOptionPane.showMessageDialog(jf,"输入过程发生了异常：\n请在命令行中打开程序并不要阻塞输入流。\n请检查输入数据的合法性。")
+        exitProcess(2)
+    }
 
     genTable()
 }

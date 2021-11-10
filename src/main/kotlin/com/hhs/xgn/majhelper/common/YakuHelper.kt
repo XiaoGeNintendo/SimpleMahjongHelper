@@ -38,13 +38,16 @@ fun initYaku() {
 
 }
 
-fun getDetail(deck: Array<Int>):ArrayList<String>{
+fun getDetail(deck: Array<Int>, notClean: Boolean = false):ArrayList<String>{
     initYaku()
 
     val res=ArrayList<String>()
 
     for(i in yakus){
         if(i.check(deck)){
+            if(notClean && i.getScore().second==0){
+                continue
+            }
             res.add(i.getName())
         }
     }

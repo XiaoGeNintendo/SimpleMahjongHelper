@@ -1,12 +1,14 @@
 package com.hhs.xgn.majhelper.common
 
 import java.lang.Integer.max
+import java.lang.Math.pow
 import java.util.*
+import kotlin.math.pow
 
 const val SET = 0
 const val RUN = 1
 val tileString = "一二三四五六七八九①②③④⑤⑥⑦⑧⑨１２３４５６７８９东南西北白发中？"
-val totalTile = tileString.length-1 //exclude '?'
+val totalTile = tileString.length - 1 //exclude '?'
 val oneNineTiles = "一九①⑨１９东西南北白发中"
 
 /**
@@ -123,27 +125,111 @@ fun verifyDeck(deck: Array<Int>): Boolean {
 }
 
 fun countSteps(completeDeck: Array<Int>, deck: Array<Int>): Int {
-    val arr = Array(totalTile+1) { 0 }
+    val arr = Array(totalTile + 1) { 0 }
     for (i in completeDeck) {
         arr[i]++
     }
     for (i in 0..3) {
-        val gp=groupToTile[deck[i]]
-        if(gp.second==RUN){
+        val gp = groupToTile[deck[i]]
+        if (gp.second == RUN) {
             arr[gp.first]--
-            arr[gp.first+1]--
-            arr[gp.first+2]--
-        }else{
-            arr[gp.first]-=3
+            arr[gp.first + 1]--
+            arr[gp.first + 2]--
+        } else {
+            arr[gp.first] -= 3
         }
     }
-    arr[deck[4]]-=2
+    arr[deck[4]] -= 2
 
 //    if(arr.sumOf { max(-it,0) }==15){
 //        println(completeDeckToString(completeDeck) + " " + deckToString(deck))
 //    }
 
     return arr.sumOf { max(-it, 0) }
+}
+
+/**
+ * 进出张计算
+ */
+fun getInOut(completeDeck: Array<Int>, deck: Array<Int>): String {
+    val arr = Array(totalTile + 1) { 0 }
+    for (i in completeDeck) {
+        arr[i]++
+    }
+    for (i in 0..3) {
+        val gp = groupToTile[deck[i]]
+        if (gp.second == RUN) {
+            arr[gp.first]--
+            arr[gp.first + 1]--
+            arr[gp.first + 2]--
+        } else {
+            arr[gp.first] -= 3
+        }
+    }
+    arr[deck[4]] -= 2
+
+//    if(arr.sumOf { max(-it,0) }==15){
+//        println(completeDeckToString(completeDeck) + " " + deckToString(deck))
+//    }
+    var str = ""
+
+    for ((id, i) in arr.withIndex()) {
+        if (id == totalTile) {
+            continue
+        }
+        if (i > 0) {
+            str += "弃[${toDisplayName(id)}]*$i "
+        }
+    }
+    for ((id, i) in arr.withIndex()) {
+        if (id == totalTile) {
+            continue
+        }
+        if (i < 0) {
+            str += "待[${toDisplayName(id)}]*${-i} "
+        }
+    }
+    return str
+}
+
+
+/**
+ * 难度计算
+ */
+fun countDifficulty(completeDeck: Array<Int>, deck: Array<Int>): Long {
+    val arr = Array(totalTile + 1) { 0 }
+    val has = Array(totalTile+1){0}
+    for (i in completeDeck) {
+        arr[i]++
+        has[i]++
+    }
+
+    for (i in 0..3) {
+        val gp = groupToTile[deck[i]]
+        if (gp.second == RUN) {
+            arr[gp.first]--
+            arr[gp.first + 1]--
+            arr[gp.first + 2]--
+        } else {
+            arr[gp.first] -= 3
+        }
+    }
+    arr[deck[4]] -= 2
+
+    val listen=arr.sumOf{max(-it,0)}
+    var diff= (3.0.pow(listen)).toLong()
+    val diffFactor= arrayOf(2,5,13,23)
+    for(i in 0 until totalTile){
+        while(arr[i]<0){
+            diff*=diffFactor[has[i]]
+            arr[i]++
+            has[i]++
+        }
+    }
+
+//    println(completeDeckToString(completeDeck)+" "+ deckToString(deck)+" = $diff")
+//    Thread.sleep(1000)
+    return diff
 }
 
 fun suffixToCompleteDeck(suffix: String): Array<Int> {
