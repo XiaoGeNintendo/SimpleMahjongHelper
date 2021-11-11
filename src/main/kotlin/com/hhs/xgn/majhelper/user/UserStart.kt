@@ -3,7 +3,6 @@ package com.hhs.xgn.majhelper.user
 import com.hhs.xgn.majhelper.common.*
 import java.io.File
 import java.util.*
-import java.util.concurrent.CopyOnWriteArrayList
 import javax.swing.JFrame
 import javax.swing.JOptionPane
 import kotlin.concurrent.thread
@@ -13,18 +12,23 @@ val arr = ArrayList<Pair<Array<Int>, Pair<Int, Int>>>()
 
 const val MaxSuggestion = 20
 
-fun gTSoIL():TreeSet<Pair<Int,Long>> = TreeSet{ pair: Pair<Int, Long>, pair1: Pair<Int, Long> ->
+fun gTSoIL(): TreeSet<Pair<Int, Long>> = TreeSet { pair: Pair<Int, Long>, pair1: Pair<Int, Long> ->
     pair.second.compareTo(pair1.second)
 }
 
-fun <T> SortedSet<T>.merge(obj: T){
+fun <T> SortedSet<T>.merge(obj: T) {
     this.add(obj)
-    if(this.size> MaxSuggestion) {
+    if (this.size > MaxSuggestion) {
         this.remove(this.last())
     }
 }
 
-fun analyze(completeDeck: Array<Int>, threadCount: Int, best1: SortedSet<Pair<Int,Long>>, best2: SortedSet<Pair<Int,Long>>) {
+fun analyze(
+    completeDeck: Array<Int>,
+    threadCount: Int,
+    best1: SortedSet<Pair<Int, Long>>,
+    best2: SortedSet<Pair<Int, Long>>
+) {
     val threads = ArrayList<Thread>()
     for (j in 0 until threadCount) {
         threads.add(thread {
@@ -34,17 +38,17 @@ fun analyze(completeDeck: Array<Int>, threadCount: Int, best1: SortedSet<Pair<In
                 if (id % threadCount == j) {
 //                    val step = countSteps(completeDeck, i.first)
                     val diff = countDifficulty(completeDeck, i.first)
-                    bestLocal1.merge(Pair(id,diff))
-                    if(i.second.second!=0) {
+                    bestLocal1.merge(Pair(id, diff))
+                    if (i.second.second != 0) {
                         bestLocal2.merge(Pair(id, diff))
                     }
                 }
             }
 
-            for(i in bestLocal1){
+            for (i in bestLocal1) {
                 best1.merge(i)
             }
-            for(i in bestLocal2){
+            for (i in bestLocal2) {
                 best2.merge(i)
             }
         })
@@ -55,13 +59,13 @@ fun analyze(completeDeck: Array<Int>, threadCount: Int, best1: SortedSet<Pair<In
 
     println("==============================")
     println("【门前清】")
-    var cnt=1
+    var cnt = 1
     for (i in best1) {
         println(
             "#${cnt}：牌型：[${deckToString(arr[i.first].first)}] " +
-                    "${arr[i.first].second.first}番${countSteps(completeDeck,arr[i.first].first)-1}向听 " +
+                    "${arr[i.first].second.first}番${countSteps(completeDeck, arr[i.first].first) - 1}向听 " +
                     "包括${getDetail(arr[i.first].first)}。" +
-                    "难度：【${i.second}】，"+
+                    "难度：【${i.second}】，" +
                     "进出张：${getInOut(completeDeck, arr[i.first].first)}"
         )
         cnt++
@@ -69,13 +73,13 @@ fun analyze(completeDeck: Array<Int>, threadCount: Int, best1: SortedSet<Pair<In
 
     println("==============================")
     println("【有副露】")
-    cnt=1
+    cnt = 1
     for (i in best2) {
         println(
             "#${cnt}：牌型：[${deckToString(arr[i.first].first)}] " +
-                    "${arr[i.first].second.second}番${countSteps(completeDeck,arr[i.first].first)-1}向听 " +
-                    "包括${getDetail(arr[i.first].first,true)}。" +
-                    "难度：【${i.second}】，"+
+                    "${arr[i.first].second.second}番${countSteps(completeDeck, arr[i.first].first) - 1}向听 " +
+                    "包括${getDetail(arr[i.first].first, true)}。" +
+                    "难度：【${i.second}】，" +
                     "进出张：${getInOut(completeDeck, arr[i.first].first)}"
         )
         cnt++
@@ -142,11 +146,11 @@ fun main() {
         myWind = scanner.nextInt()
         println("线程个数。推荐6-12。")
         threadCount = scanner.nextInt()
-    }catch(e: Exception){
+    } catch (e: Exception) {
 
-        val jf= JFrame()
-        jf.isAlwaysOnTop=true
-        JOptionPane.showMessageDialog(null,"输入过程发生了异常：\n请在命令行中打开程序并不要阻塞输入流。\n请检查输入数据的合法性。")
+        val jf = JFrame()
+        jf.isAlwaysOnTop = true
+        JOptionPane.showMessageDialog(null, "输入过程发生了异常：\n请在命令行中打开程序并不要阻塞输入流。\n请检查输入数据的合法性。")
         exitProcess(2)
     }
 
@@ -157,7 +161,7 @@ fun main() {
         val reader = File("table_${roundWind}_$myWind.txt").bufferedReader()
         str = reader.readLine()
         reader.close()
-    }catch(e: Exception){
+    } catch (e: Exception) {
         println("读取表文件时发生错误。")
         println("1. 请检查输入数据是否正常")
         println("2. 请检查table_${roundWind}_$myWind.txt是否存在。若不存在，请调用生成函数gen。")
@@ -179,10 +183,10 @@ fun main() {
         )
     }
 
-    str=""
+    str = ""
     println("Read ${arr.size} different endings!")
 
-    while(true) {
+    while (true) {
         userStart(threadCount)
     }
 }
