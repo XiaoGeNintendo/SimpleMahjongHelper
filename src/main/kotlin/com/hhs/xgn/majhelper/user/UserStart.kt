@@ -38,9 +38,9 @@ fun analyze(
                 if (id % threadCount == j) {
 //                    val step = countSteps(completeDeck, i.first)
                     val diff = countDifficulty(completeDeck, i.first)
-                    bestLocal1.merge(Pair(id, diff))
+                    bestLocal1.merge(Pair(id, diff.first))
                     if (i.second.second != 0) {
-                        bestLocal2.merge(Pair(id, diff))
+                        bestLocal2.merge(Pair(id, diff.second))
                     }
                 }
             }

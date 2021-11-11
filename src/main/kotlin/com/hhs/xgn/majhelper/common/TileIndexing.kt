@@ -196,7 +196,7 @@ fun getInOut(completeDeck: Array<Int>, deck: Array<Int>): String {
 /**
  * 难度计算
  */
-fun countDifficulty(completeDeck: Array<Int>, deck: Array<Int>): Long {
+fun countDifficulty(completeDeck: Array<Int>, deck: Array<Int>): Pair<Long,Long> {
     val arr = Array(totalTile + 1) { 0 }
     val has = Array(totalTile+1){0}
     for (i in completeDeck) {
@@ -217,11 +217,15 @@ fun countDifficulty(completeDeck: Array<Int>, deck: Array<Int>): Long {
     arr[deck[4]] -= 2
 
     val listen=arr.sumOf{max(-it,0)}
-    var diff= (3.0.pow(listen)).toLong()
+    var diff1= (3.0.pow(listen)).toLong()
+    var diff2= (3.0.pow(listen)).toLong()
     val diffFactor= arrayOf(2,5,13,23)
+    val diffFactor2 = arrayOf(2,5,2,13)
+
     for(i in 0 until totalTile){
         while(arr[i]<0){
-            diff*=diffFactor[has[i]]
+            diff1*=diffFactor[has[i]]
+            diff2*=diffFactor2[has[i]]
             arr[i]++
             has[i]++
         }
@@ -229,7 +233,7 @@ fun countDifficulty(completeDeck: Array<Int>, deck: Array<Int>): Long {
 
 //    println(completeDeckToString(completeDeck)+" "+ deckToString(deck)+" = $diff")
 //    Thread.sleep(1000)
-    return diff
+    return Pair(diff1,diff2)
 }
 
 fun suffixToCompleteDeck(suffix: String): Array<Int> {
