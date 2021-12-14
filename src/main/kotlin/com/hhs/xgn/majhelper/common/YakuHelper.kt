@@ -12,7 +12,7 @@ fun initYaku() {
     isYakuInit = true
     yakus += DoubleSequence
     yakus += Pinfu
-    yakus += Riichi
+//    yakus += Riichi
     yakus += Tanyao
     yakus += RoundWind
     yakus += SelfWind

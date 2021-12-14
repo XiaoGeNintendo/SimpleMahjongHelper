@@ -10,7 +10,7 @@ import kotlin.system.exitProcess
 
 val arr = ArrayList<Pair<Array<Int>, Pair<Int, Int>>>()
 
-const val MaxSuggestion = 20
+const val MaxSuggestion = 5
 
 fun gTSoIL(): TreeSet<Pair<Int, Long>> = TreeSet { pair: Pair<Int, Long>, pair1: Pair<Int, Long> ->
     pair.second.compareTo(pair1.second)

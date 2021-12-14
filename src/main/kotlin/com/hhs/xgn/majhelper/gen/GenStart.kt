@@ -38,10 +38,12 @@ fun genTable() {
                             deck[4] = m
                             if (verifyDeck(deck)) {
                                 val score = checkScore(deck)
-                                tmpcnt++
-                                tmp.append(compress(deck))
-                                tmp.append(compress(score.first))
-                                tmp.append(compress(score.second))
+                                if(score.first>0) {
+                                    tmpcnt++
+                                    tmp.append(compress(deck))
+                                    tmp.append(compress(score.first))
+                                    tmp.append(compress(score.second))
+                                }
                             }
                         }
                     }

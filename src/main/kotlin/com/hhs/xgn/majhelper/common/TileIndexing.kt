@@ -28,7 +28,7 @@ fun isSet(group: Int): Boolean {
 
 fun containsOneNineTile(group: Int): Boolean {
     return toDisplayName(groupToTile[group].first) in oneNineTiles ||
-            groupToTile[group].second == RUN && toDisplayName(groupToTile[group].first) in "七⑦7"
+            groupToTile[group].second == RUN && toDisplayName(groupToTile[group].first) in "七⑦７"
 }
 
 fun isRoundWindTile(tile: Int): Boolean {
